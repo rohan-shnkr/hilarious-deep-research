@@ -4,6 +4,8 @@ MCP Server implementation for Tim Urban Research Agent
 import asyncio
 import json
 import logging
+from galileo import galileo_context
+import os
 from typing import Any, Dict, List, Optional, Sequence
 
 from mcp.server import Server
@@ -116,52 +118,55 @@ class TimUrbanMCPServer:
         async def call_tool(name: str, arguments: Dict[str, Any]) -> CallToolResult:
             """Handle tool calls"""
             try:
-                if name == "research_topic":
-                    result = await self.agent.research_topic(**arguments)
-                    return CallToolResult(
-                        content=[
-                            TextContent(
-                                type="text",
-                                text=result["blog_post"]
-                            )
-                        ] + [
-                            ImageContent(
-                                type="image",
-                                data=cartoon["data"],
-                                mimeType="image/png"
-                            ) for cartoon in result.get("cartoons", [])
-                        ]
-                    )
+                galileo_log_stream = os.getenv("GALILEO_LOG_STREAM", "my_log_stream")
+    
+                with galileo_context(log_stream=galileo_log_stream):
+                    if name == "research_topic":
+                        result = await self.agent.research_topic(**arguments)
+                        return CallToolResult(
+                            content=[
+                                TextContent(
+                                    type="text",
+                                    text=result["blog_post"]
+                                )
+                            ] + [
+                                ImageContent(
+                                    type="image",
+                                    data=cartoon["data"],
+                                    mimeType="image/png"
+                                ) for cartoon in result.get("cartoons", [])
+                            ]
+                        )
                 
-                elif name == "web_search":
-                    web_tool = WebSearchTool()
-                    results = await web_tool.execute(**arguments)
-                    return CallToolResult(
-                        content=[TextContent(type="text", text=json.dumps(results, indent=2))]
-                    )
-                
-                elif name == "youtube_search":
-                    youtube_tool = YouTubeTool()
-                    results = await youtube_tool.execute(**arguments)
-                    return CallToolResult(
-                        content=[TextContent(type="text", text=json.dumps(results, indent=2))]
-                    )
-                
-                elif name == "generate_cartoon":
-                    image_tool = ImageGenerationTool()
-                    result = await image_tool.execute(**arguments)
-                    return CallToolResult(
-                        content=[
-                            ImageContent(
-                                type="image",
-                                data=result["image_data"],
-                                mimeType="image/png"
-                            )
-                        ]
-                    )
-                
-                else:
-                    raise ValueError(f"Unknown tool: {name}")
+                    elif name == "web_search":
+                        web_tool = WebSearchTool()
+                        results = await web_tool.execute(**arguments)
+                        return CallToolResult(
+                            content=[TextContent(type="text", text=json.dumps(results, indent=2))]
+                        )
+                    
+                    elif name == "youtube_search":
+                        youtube_tool = YouTubeTool()
+                        results = await youtube_tool.execute(**arguments)
+                        return CallToolResult(
+                            content=[TextContent(type="text", text=json.dumps(results, indent=2))]
+                        )
+                    
+                    elif name == "generate_cartoon":
+                        image_tool = ImageGenerationTool()
+                        result = await image_tool.execute(**arguments)
+                        return CallToolResult(
+                            content=[
+                                ImageContent(
+                                    type="image",
+                                    data=result["image_data"],
+                                    mimeType="image/png"
+                                )
+                            ]
+                        )
+                    
+                    else:
+                        raise ValueError(f"Unknown tool: {name}")
                     
             except Exception as e:
                 logger.error(f"Tool execution failed: {e}")

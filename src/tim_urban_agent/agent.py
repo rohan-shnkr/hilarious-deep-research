@@ -11,6 +11,7 @@ from .tools.youtube_tool import YouTubeTool
 from .tools.image_generation_tool import ImageGenerationTool
 from .generators.blog_generator import BlogGenerator
 from .utils.research_aggregator import ResearchAggregator
+from galileo import log, galileo_context
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +27,8 @@ class TimUrbanResearchAgent:
         self.image_generator = ImageGenerationTool()
         self.blog_generator = BlogGenerator()
         self.research_aggregator = ResearchAggregator()
-        
+
+    @log(span_type="entrypoint", name="tim_urban_research_agent")    
     async def research_topic(
         self,
         topic: str,
@@ -75,13 +77,20 @@ class TimUrbanResearchAgent:
                 "sources": research_data["sources"],
                 "generated_at": datetime.now().isoformat(),
                 "topic": topic,
-                "style": style
+                "style": style,
+                "metrics": {
+                    "word_count": len(blog_post.split()),
+                    "source_count": len(research_data["sources"]),
+                    "cartoon_count": len(cartoons),
+                    "research_depth": depth
+                }
             }
             
         except Exception as e:
             logger.error(f"Research failed for topic '{topic}': {e}")
             raise
     
+    @log(span_type="workflow", name="research_gathering")
     async def _gather_research(self, topic: str, depth: int) -> Dict[str, Any]:
         """Gather research from multiple sources"""
         logger.info(f"Gathering research with depth level {depth}")
