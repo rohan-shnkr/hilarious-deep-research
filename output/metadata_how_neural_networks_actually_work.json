@@ -1,0 +1,26 @@
+{
+  "topic": "How Neural Networks Actually Work",
+  "style": "humorous",
+  "generated_at": "2025-06-22T02:04:01.823338",
+  "research_summary": "06 October 2021Link copiedWhat is a neural network A neural network is amachine learningprogram, or model, that makes decisions in a manner similar to the human brain, by using processes that mimic the way biological neurons work together to identify phenomena, weigh options and arrive at conclusions Every neural network consists of layers of nodes or artificial neurons, an input layer, one or more hidden layers, and an output layer",
+  "sources": [
+    {
+      "type": "web",
+      "title": "What is a Neural Network? | IBM",
+      "url": "https://www.ibm.com/think/topics/neural-networks",
+      "snippet": "A neural network is a machine learning program, or model, that makes decisions in a manner similar to the human brain."
+    },
+    {
+      "type": "youtube",
+      "title": "Neural Networks Explained in 5 minutes",
+      "url": "https://www.youtube.com/watch?v=jmmW0F0biz0",
+      "transcript_preview": "Here are five things to know about neural\u00a0\nnetworks in under five minutes. Number one:\u00a0\u00a0 neural networks are composed of node layers. There\u00a0\nis an input node layer, there is a hidden layer,\u00a0\u00a0 and ther..."
+    },
+    {
+      "type": "related_web",
+      "title": "Neural Networks in 10mins. Simply Explained!",
+      "url": "https://medium.com/@sadafsaleem5815/neural-networks-in-10mins-simply-explained-9ec2ad9ea815",
+      "snippet": "Just like the neurons in our brains, each node in a neural network receives input, processes it, and passes the output on to the next node. As ..."
+    }
+  ]
+}

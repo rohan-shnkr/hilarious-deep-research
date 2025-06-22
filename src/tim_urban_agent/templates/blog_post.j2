@@ -1,0 +1,36 @@
+Write a complete blog post about "{{ analysis.topic }}" using this structure:
+
+TITLE: {{ structure.title }}
+SUBTITLE: {{ structure.subtitle }}
+
+RESEARCH SUMMARY:
+{{ analysis.summary }}
+
+KEY POINTS TO COVER:
+{% for point in analysis.key_points %}
+- {{ point }}
+{% endfor %}
+
+BLOG STRUCTURE:
+{% for section in structure.sections %}
+## {{ section.header }}
+{{ section.content_outline }}
+
+{% endfor %}
+
+CARTOON CONCEPTS TO REFERENCE:
+{% for cartoon in cartoons %}
+- {{ cartoon.concept }}
+{% endfor %}
+
+WRITING STYLE: {{ style }}
+
+Please write this as a complete, engaging blog post in Tim Urban's signature style with:
+- Funny analogies and metaphors
+- Step-by-step breakdowns of complex concepts  
+- Conversational tone with lots of personality
+- "Wait but why" moments and mind-bending realizations
+- References to stick figure cartoons at appropriate points
+- A satisfying conclusion that ties everything together
+
+Target length: 2000+ words
