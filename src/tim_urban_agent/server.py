@@ -7,6 +7,7 @@ import logging
 from galileo import galileo_context
 import os
 from typing import Any, Dict, List, Optional, Sequence
+from galileo import log
 
 from mcp.server import Server
 from mcp.server.models import InitializationOptions
@@ -115,6 +116,7 @@ class TimUrbanMCPServer:
             ]
         
         @self.server.call_tool()
+        @log(span_type="tool", name="call_tool")
         async def call_tool(name: str, arguments: Dict[str, Any]) -> CallToolResult:
             """Handle tool calls"""
             try:

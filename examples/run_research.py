@@ -7,6 +7,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from galileo import galileo_context
 
 # Add the src directory to Python path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
@@ -66,12 +67,13 @@ async def main():
         print("This may take a few minutes...\n")
         
         # Conduct the research
-        result = await agent.research_topic(
-            topic=selected_topic,
-            depth=depth,
-            style=style,
-            include_cartoons=include_cartoons
-        )
+        with galileo_context(log_stream="research-topic-flow"):
+            result = await agent.research_topic(
+                topic=selected_topic,
+                depth=depth,
+                style=style,
+                include_cartoons=include_cartoons
+            )
         
         # Save results
         output_dir = Path("output")

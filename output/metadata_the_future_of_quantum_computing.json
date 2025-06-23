@@ -1,0 +1,56 @@
+{
+  "topic": "The Future of Quantum Computing",
+  "style": "humorous",
+  "generated_at": "2025-06-22T23:06:39.518315",
+  "research_summary": "Quantum Computing: Potential and Challenges aheadAccording to McKinsey, the quantum computing market could grow to around $80 billion by 2035 or 2040 We are currently at a point where many qubit technologies are competing to become the basis for the first universal, faultless quantum computer, but there are still many challenges to be faced We look at its future prospects, its potential, and the impact it will have on individuals and businesses",
+  "sources": [
+    {
+      "type": "web",
+      "title": "Quantum Computing: Potential and Challenges ahead",
+      "url": "https://www.plainconcepts.com/quantum-computing-potential-challenges/",
+      "snippet": "According to McKinsey, the quantum computing market could grow to around $80 billion by 2035 or 2040. We are currently at a point where many qubit ..."
+    },
+    {
+      "type": "web",
+      "title": "Unlocking the quantum future",
+      "url": "https://news.mit.edu/2024/hackathon-unlocking-quantum-future-0318",
+      "snippet": "Quantum computing is the next frontier for faster and more powerful computing technologies. It has the potential to better optimize routes ..."
+    },
+    {
+      "type": "web",
+      "title": "The Future Of Quantum Computing",
+      "url": "https://www.forbes.com/councils/forbestechcouncil/2024/12/04/the-future-of-quantum-computing/",
+      "snippet": "This article examines three major trajectories that will shape the future of quantum computing: the gate-based approach, the whole-systems approach and the ..."
+    },
+    {
+      "type": "youtube",
+      "title": "The Future of Quantum Computing with Michio Kaku, Neil deGrasse Tyson &amp; More",
+      "url": "https://www.youtube.com/watch?v=lum6rdKr4To",
+      "transcript_preview": "[Music] welcome to start talk live at the Beacon Theater New York City tonight we're going to discuss something that will change the world the world is already changing right now it will change it eve..."
+    },
+    {
+      "type": "youtube",
+      "title": "Michio Kaku: Quantum computing is the next revolution",
+      "url": "https://www.youtube.com/watch?v=qQviI1d_hFA",
+      "transcript_preview": "- We all know that digital computers changed virtually every\naspect of our life. Well, the arrival of quantum computers could be even more historic than that. We're now in the initial\nstages of the ne..."
+    },
+    {
+      "type": "related_web",
+      "title": "What Is Quantum Computing?",
+      "url": "https://www.ibm.com/think/topics/quantum-computing",
+      "snippet": "Quantum computing is a rapidly-emerging technology that harnesses the laws of quantum mechanics to solve problems too complex for classical ..."
+    },
+    {
+      "type": "related_web",
+      "title": "Explore 7 future potential quantum computing uses",
+      "url": "https://www.techtarget.com/searchdatacenter/tip/Explore-future-potential-quantum-computing-uses",
+      "snippet": "Potential quantum computing uses include improving supply chains, financial modeling, and AI and machine learning optimization."
+    },
+    {
+      "type": "related_web",
+      "title": "The Future of Quantum Computing: Near- and Long-Term ...",
+      "url": "https://www.techtarget.com/searchcio/tip/The-future-of-quantum-computing-Near-and-long-term-outlook",
+      "snippet": "Quantum computing predictions \u00b7 1. Quantum processors support early use cases. \u00b7 2. Quantum circuits get bigger. \u00b7 3. Error correction overcomes ..."
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import asyncio
 from typing import Dict, List, Any
 from bs4 import BeautifulSoup
 import logging
+from galileo import log
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +23,7 @@ class WebSearchTool:
             self.session = aiohttp.ClientSession()
         return self.session
     
+    @log(span_type="tool", name="execute_web_search")
     async def execute(self, query: str, max_results: int = 5) -> Dict[str, Any]:
         """
         Search the web for articles related to the query
@@ -60,6 +62,7 @@ class WebSearchTool:
             logger.error(f"Web search failed: {e}")
             return {"query": query, "articles": [], "error": str(e)}
     
+    @log(span_type="tool", name="search_web")
     async def _search_web(self, query: str, max_results: int) -> List[Dict]:
         """Perform web search using SerpAPI"""
         if not self.serp_api_key:
@@ -100,6 +103,7 @@ class WebSearchTool:
             for i in range(max_results)
         ]
     
+    @log(span_type="tool", name="extract_article_content")
     async def _extract_article_content(self, url: str) -> str:
         """Extract main content from an article URL"""
         try:

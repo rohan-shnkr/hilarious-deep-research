@@ -11,6 +11,7 @@ import matplotlib.patches as patches
 from matplotlib.patches import Circle, FancyBboxPatch
 import numpy as np
 import logging
+from galileo import log
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,7 @@ class ImageGenerationTool:
         self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.dalle_model = os.getenv("DALLE_MODEL", "dall-e-3")
     
+    @log(span_type="tool", name="generate_image")
     async def execute(self, concept: str, style: str = "simple") -> Dict[str, Any]:
         """
         Generate a stick figure cartoon illustrating a concept
@@ -148,6 +150,7 @@ class ImageGenerationTool:
         else:
             ax.text(x, y, text, ha='center', va='center', fontsize=10, weight='bold')
     
+    @log(span_type="llm", name="generate_dalle_cartoon")
     async def _generate_dalle_cartoon(self, concept: str) -> str:
         """Generate cartoon using DALL-E"""
         prompt = f"""

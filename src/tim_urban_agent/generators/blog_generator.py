@@ -6,6 +6,7 @@ from typing import Dict, List, Any
 from jinja2 import Environment, FileSystemLoader
 from anthropic import Anthropic
 import logging
+from galileo import log
 
 from ..config import config
 
@@ -21,6 +22,7 @@ class BlogGenerator:
         template_dir = os.path.join(os.path.dirname(__file__), '..', 'templates')
         self.template_env = Environment(loader=FileSystemLoader(template_dir))
     
+    @log(span_type="llm", name="create_structure")
     async def create_structure(self, analysis: Dict[str, Any], style: str) -> Dict[str, Any]:
         """Create a structured outline for the blog post"""
         
@@ -64,6 +66,7 @@ class BlogGenerator:
             logger.error(f"Failed to create blog structure: {e}")
             return self._fallback_structure(analysis)
     
+    @log(span_type="llm", name="generate_full_post")
     async def generate_full_post(
         self, 
         structure: Dict[str, Any], 

@@ -7,6 +7,7 @@ from typing import Dict, List, Any, Optional
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
 import logging
+from galileo import log
 
 # Try to import config, fallback to os.getenv if not available
 try:
@@ -32,6 +33,7 @@ class YouTubeTool:
             self.youtube = None
             logger.warning("YouTube API key not found - using simulation mode")
     
+    @log(span_type="tool", name="youtube_search")
     async def execute(self, query: str, max_videos: int = 3) -> Dict[str, Any]:
         """
         Search YouTube for videos and extract transcripts
@@ -78,6 +80,7 @@ class YouTubeTool:
             logger.error(f"YouTube search failed: {e}")
             return {"query": query, "videos": [], "error": str(e)}
     
+    @log(span_type="tool", name="search_videos")
     async def _search_videos(self, query: str, max_results: int) -> List[Dict]:
         """Search for YouTube videos"""
         if not self.youtube:
@@ -128,6 +131,7 @@ class YouTubeTool:
             for i in range(max_results)
         ]
     
+    @log(span_type="tool", name="get_video_transcript")
     async def _get_video_transcript(self, video_id: str) -> str:
         """Extract transcript from a YouTube video"""
         try:

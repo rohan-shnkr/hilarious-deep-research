@@ -90,7 +90,7 @@ class TimUrbanResearchAgent:
             logger.error(f"Research failed for topic '{topic}': {e}")
             raise
     
-    @log(span_type="workflow", name="research_gathering")
+    @log(span_type="tool", name="research_gathering")
     async def _gather_research(self, topic: str, depth: int) -> Dict[str, Any]:
         """Gather research from multiple sources"""
         logger.info(f"Gathering research with depth level {depth}")
@@ -130,6 +130,7 @@ class TimUrbanResearchAgent:
             "depth": depth
         }
     
+    # @log(span_type="tool", name="generate_related_queries")
     async def _generate_related_queries(self, topic: str) -> List[str]:
         """Generate related search queries to explore the topic more thoroughly"""
         # This would use an LLM to generate related queries
@@ -142,6 +143,7 @@ class TimUrbanResearchAgent:
             f"{topic} vs alternatives"
         ]
     
+    # @log(span_type="tool", name="compile_sources")
     def _compile_sources(self, web_results: Dict, youtube_results: Dict, related_results: List) -> List[Dict]:
         """Compile all sources into a structured list"""
         sources = []
@@ -176,6 +178,7 @@ class TimUrbanResearchAgent:
         
         return sources
     
+    @log(span_type="llm", name="generate_cartoons")
     async def _generate_cartoons(self, cartoon_concepts: List[str]) -> List[Dict]:
         """Generate stick figure cartoons for the blog post"""
         cartoons = []
